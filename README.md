@@ -2,8 +2,7 @@
 
 ## Task 1：
 
-
-- [x] 1. 实现最简单的帧差法运动物体追踪
+- [x] 实现最简单的帧差法运动物体追踪
 
 帧差法：当视频中存在移动物体时，相邻帧之间在灰度上会有所差别，求取两帧图像的灰度差的绝对值，则静止的物体的像素在这个差值结果中的灰度值为0，而移动物体特别是该物体的轮廓处由于存在灰度变化为非0，这样就能大致计算出移动物体的位置，轮廓以及移动路径。
 
@@ -54,9 +53,13 @@
 ## Task 2:
 
 
-- [ ] 手动复现论文[《Visual Object Tracking using Adaptive Correlation Filters. David S. Bolme, J. Ross Beveridge, Bruce A. Draper, Yui Man Lui. CVPR，2010》](https://ieeexplore.ieee.org/abstract/document/5539960)
+- [x] 手动复现论文[《Visual Object Tracking using Adaptive Correlation Filters. David S. Bolme, J. Ross Beveridge, Bruce A. Draper, Yui Man Lui. CVPR，2010》](https://ieeexplore.ieee.org/abstract/document/5539960)
 
 论文学习记录：[「论文阅读」Visual Object Tracking using Adaptive Correlation Filters](https://blog.zerorains.top/2022/07/02/%E3%80%8C%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E3%80%8DVisual-Object-Tracking-using-Adaptive-Correlation-Filters/)
+
+实现代码：[mosse](https://github.com/zeroRains/Task-for-object-chacking/blob/master/Task_2/mosse.py#L1)
+
+实现效果：[result.avi](https://github.com/zeroRains/Task-for-object-chacking/raw/master/Task_2/result.avi)
 
 
 
