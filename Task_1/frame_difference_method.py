@@ -6,13 +6,13 @@ import numpy as np
 class FrameDifference:
     """
     path：视频的路径
-    num: 帧差法中具体差多少帧，默认1，即1帧过完之后才使用跟踪算法
+    num: 帧差法中具体差多少帧，默认6，即6帧过完之后才使用跟踪算法
     thread：帧差法的阈值，默认10，即当两帧的灰度计算出来后，大于等于thread的会被保留，低于的会被舍弃
     fps: 追踪后视频的帧率，默认40帧
     contours_len：轮廓长度超过这个值才会保留这个轮廓
     """
 
-    def __init__(self, path, num=1, thread=10, fps=40, contours_len=60, show_in_windows=False):
+    def __init__(self, path, num=6, thread=10, fps=40, contours_len=500, show_in_windows=False):
         self.path = path
         self.num = num
         self.thread = thread
@@ -62,7 +62,7 @@ class FrameDifference:
                         cv2.rectangle(frac, (x, y), (x + w, y + h), (0, 255, 0), 2)
                 if self.show_in_windows:
                     cv2.imshow('result', frac)
-                    cv2.waitKey(30)
+                    cv2.waitKey(10)
                 out.write(frac)
             else:
                 break
