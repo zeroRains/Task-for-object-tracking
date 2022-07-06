@@ -73,17 +73,35 @@
    >
    >In our experience, PSR for UMACE, ASEF, and MOSSE under normal tracking conditions typically ranges between 20.0 and 60.0 which indicates very strong peaks. We have found that when PSR drops to around 7.0 it is an indication that the object is occluded or tracking has failed. For the Naive implementation PSR ranges between 3.0 and 10.0 and is not useful for predicting track quality.
 
-3. 
+3. 上面那个问题解决了，查了相关资料（参考资料4），最后发现相关性其实是傅里叶域中信号处理的一个概念，所以在计算PSR的时候应该是在傅里叶域进行计算的。之前得到的数值非常低，是因为我计算PSR的位置是在进行反傅里叶变化回到空间域后才进行PSR的计算，所以这个结果就比较低。经过修正后的复现结果如下(不用预训练)：
+
+   | 视频名称  | 平均PSR | PSR变换范围 |
+   | --------- | ------- | ----------- |
+   | demo.mp4  | 46.88   | 30.83—70.46 |
+   | demo2.avi | 42.92   | 2.45—139.01 |
+   | demo3.mp4 | 44.02   | 16.15—63.64 |
+
+   (使用预训练128次)：
+   
+   | 视频名称  | 平均PSR | PSR变换范围  |
+   | --------- | ------- | ------------ |
+   | demo.mp4  | 69.08   | 31.91—210.56 |
+   | demo2.avi | 42.95   | 11.84—152.04 |
+   | demo3.mp4 | 44.04   | 17.07—66.65  |
+
 
 参考资料：
 
 1. [余弦窗(汉宁窗)的作用——图像预处理](https://blog.csdn.net/dengheCSDN/article/details/78085468)
 2. [图像的仿射变换：cv2.warpAffine()](https://zhuanlan.zhihu.com/p/416073892)
 3. [TianhongDai/mosse-object-tracking](https://github.com/TianhongDai/mosse-object-tracking)
+3. [相关滤波器（Correlation Filters）](https://blog.csdn.net/sgfmby1994/article/details/68490903)
 
 
 ## Task 3:
 
 
 - [ ] 将相关滤波检测算法扩展应用到相似形状物体检测领域。(诸如细胞核检测、汽车检测等场景)
+
+**初步想法**：相关滤波依赖于第一次给定的检测窗，这个检测窗会生成一个高斯峰，这个高斯峰的中心就是目标的中心，利用这一特点可以生成论文中的A和B（可以通过预训练的方式生成，也可以直接生成），然后通过这两个东西生成H，**先通过其计算出目标物体的相关性，然后使用滑动窗的方法，遍历图像的像素，依赖这个这个滤波器，计算出在这个滑动窗位置的相关性，依据这个相关性和目标进行比对，如果差距不超过一定的阈值，就说明他们是相似物体。**
 

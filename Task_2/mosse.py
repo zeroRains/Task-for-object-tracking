@@ -2,6 +2,7 @@ from Task_2.utils import *
 import numpy as np
 import cv2
 
+
 class MOSSE:
     def __init__(self, sigma=100., lr=0.125, fps=40, show_in_window=False, pretrain_num=0):
         """
@@ -59,10 +60,10 @@ class MOSSE:
                     fi = pre_process(cv2.resize(fi, (self.first_gt[2], self.first_gt[3])))
                     # 按照公式1计算Gi
                     Gi = Hi * np.fft.fft2(fi)
+                    self.psr.append(cal_psr(Gi))
                     # 返回到空间域(根据Failure Detection and PSR的说明，gi是用于计算PSR的关键)
                     gi = np.fft.ifft2(Gi)
                     gi = normalization(gi)
-                    self.psr.append(cal_psr(gi))
                     # 找到这个新生成的gi的峰值
                     max_pos = np.where(gi == gi.max())
                     # 获取新的框左上角坐标的偏移量
@@ -101,5 +102,10 @@ class MOSSE:
 
 
 if __name__ == '__main__':
-    filter_mosse = MOSSE(show_in_window=True, pretrain_num=0, sigma=100.0)
-    filter_mosse.run('../source/demo.mp4', 'result.avi')
+    filter_mosse = MOSSE(show_in_window=True, pretrain_num=128, sigma=100.0)
+    filter_mosse.run('../source/demo2.avi', 'result.avi')
+    filter_mosse.psr = np.array(filter_mosse.psr)
+    print(filter_mosse.psr)
+    print(filter_mosse.psr.max())
+    print(filter_mosse.psr.min())
+    print(filter_mosse.psr.mean())

@@ -59,8 +59,8 @@ def pretrain(img, G, pretrain_num, lr):
     Bi = np.fft.fft2(img) * np.conjugate(np.fft.fft2(img))
     for _ in range(pretrain_num):
         fi = pre_process(img)
-        Ai = (1 - lr) * Ai + lr * G * np.conjugate(np.fft.fft2(fi))
-        Bi = (1 - lr) * Bi + lr * np.fft.fft2(fi) * np.conjugate(np.fft.fft2(fi))
+        Ai = Ai + G * np.conjugate(np.fft.fft2(fi))
+        Bi = Bi + np.fft.fft2(fi) * np.conjugate(np.fft.fft2(fi))
     return Ai, Bi
 
 
@@ -76,15 +76,15 @@ def cal_psr(g):
     sidelobe = []
     x, y = np.where(g == peak)
     # sidelobe是除开峰值位置周围11x11窗口的像素之外的所有像素（论文原文）
-    min_x, min_y = max(0, x.item() - 5), max(0, y.item() - 5)
-    max_x, max_y = min(h, x.item() + 5), min(w, y.item() + 5)
+    min_x, min_y = max(0, x[0] - 5), max(0, y[0] - 5)
+    max_x, max_y = min(h, x[0] + 5), min(w, y[0] + 5)
     for i in range(h):
         for j in range(w):
             if min_x <= i <= max_x and min_y <= j <= max_y:
                 continue
             else:
-                sidelobe.append(g[i][j].real)
+                sidelobe.append(g[i][j])
     sidelobe = np.array(sidelobe)
-    psr = (peak.real - sidelobe.mean()) / sidelobe.std()
-    print(psr)
-    return psr
+    psr = (peak - sidelobe.mean()) / sidelobe.std()
+    print(psr.real)
+    return psr.real
