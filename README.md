@@ -61,7 +61,19 @@
 
 实现效果：[result.avi](https://github.com/zeroRains/Task-for-object-chacking/raw/master/Task_2/result.avi)
 
+复现细节：
 
+1. 首先是阅读了论文，理解文章的主要方法后，参考了参考资料3的代码进行复现。
+
+2. 这个仓库的代码对追踪的效果从视觉上表现不错（指在跟踪点上，因为框的大小是固定的所以在追踪过程中框的位置会凸显出分割效果不好，但是在最初确定的中心点上，的跟踪还是比较准确的），但是这个代码缺少了评价指标PSR（Peak to Sidelobe Ratio）的计算过程，然后根据论文中的计算公式对PSR进行计算（对引用的第一段），在我的demo.mp4视频中，的平均PSR为9.73，前期的的PSR为2左右，但是到后面就稳定在11到12上（这个视频前面有一段是不动的，这个时候PSR会直线上升，当画面开始移动时PSR就稳定在11到12之间）。而在demo2.avi视频中（参考资料3中使用的视频），平均PSR为5.98，整个视频的PSR变化范围为3到7。在视频demo3.mp4中（针对眼珠进行追踪），他的平均PSR为4.67，整个视频的psr变化稳定在4到5之间。
+
+   这样就显得比较奇怪了，因为在引用的第二段中，作者说这个一般追踪情况下PSR的值应该在20到60之间，并且认为低于7的时候是物体被遮挡或者追踪失败了。对于那些Naive的实现方式，PSR通常在3.0到10之间。按照我的实验结果来看，MOSSE的psr并没有达到20到60之间，而是和作者说的Naive方法一样，在7到10之间，这个有点奇怪。
+
+   >As mentioned before a simple measurement of peak strength is called the Peak to Sidelobe Ratio (PSR). To compute the PSR the correlation output g is split into the peak which is the maximum value and the sidelobe which is the rest of the pixels excluding an 11 × 11 window around the peak. The PSR is then defined as $\frac {g_{max}-\mu_{sl}}{\sigma_{sl}}$ where $g_{max}$ is the peak values and $\mu_{sl}$ and $\sigma_{sl}$ are the mean and standard deviation of the sidelobe.
+   >
+   >In our experience, PSR for UMACE, ASEF, and MOSSE under normal tracking conditions typically ranges between 20.0 and 60.0 which indicates very strong peaks. We have found that when PSR drops to around 7.0 it is an indication that the object is occluded or tracking has failed. For the Naive implementation PSR ranges between 3.0 and 10.0 and is not useful for predicting track quality.
+
+3. 
 
 参考资料：
 
