@@ -50,7 +50,7 @@ def random_warp(img):
     return img_rot
 
 
-def pretrain(img, G, pretrain_num, lr):
+def pretrain(img, G, pretrain_num):
     h, w = G.shape
     # 预处理(用来解决目标的不连续问题)
     fi = pre_process(cv2.resize(img, (w, h)))

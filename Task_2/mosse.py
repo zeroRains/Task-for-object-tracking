@@ -45,7 +45,7 @@ class MOSSE:
                     fi = first_frame[first_gt[1]:first_gt[1] + first_gt[3], first_gt[0]:first_gt[0] + first_gt[2]]
                     # 转化到频域
                     G = np.fft.fft2(gi)
-                    Ai, Bi = pretrain(fi, G, self.pretrain_num, self.lr)
+                    Ai, Bi = pretrain(fi, G, self.pretrain_num)
                     Ai = self.lr * Ai
                     Bi = self.lr * Bi
                     pos = first_gt.copy()

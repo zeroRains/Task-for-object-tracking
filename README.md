@@ -105,3 +105,19 @@
 
 **初步想法**：相关滤波依赖于第一次给定的检测窗，这个检测窗会生成一个高斯峰，这个高斯峰的中心就是目标的中心，利用这一特点可以生成论文中的A和B（可以通过预训练的方式生成，也可以直接生成），然后通过这两个东西生成H，**先通过其计算出目标物体的相关性，然后使用滑动窗的方法，遍历图像的像素，依赖这个这个滤波器，计算出在这个滑动窗位置的相关性，依据这个相关性和目标进行比对，如果差距不超过一定的阈值，就说明他们是相似物体。**
 
+非常遗憾，初步想法好像并没有我想的那么简单，单凭一个检测框去获得相似图像的结果还是太单纯了。
+
+这两天我学习了两篇文章：1. [Object detection and tracking benchmark in industry based on improved correlation filter ](https://link.springer.com/article/10.1007/s11042-018-6079-1) 2. [Simple real-time human detection using a single correlation filter](https://ieeexplore.ieee.org/abstract/document/5399555)。
+
+在第一篇文章中，讲述了他们提出的一种基于dijkstra的相关滤波，用来实现目标检测和目标跟踪，但是文章好像默认咱会相关滤波器实现目标检测的方法，因此没有详细描述相关滤波实现目标检测的具体细节（提供了matlab的代码）。然后在他的参考文献中，我找到的第二篇文章，在这篇文章详细介绍了ASEF相关滤波器实现目标检测的一般方法：首先是需要给出一定数量的图片，然后给出图像中人的位置，对这些位置进行截取，并通过他们生成相关滤波，并进行反复迭代，最后对每一个滤波器的值取一个平均，就可以生成最终的滤波器。然后使用这个滤波器采用卷积的方式对图像进行滑动窗式的卷积运算，在有人的位置会产生比较大的峰值，当这个峰值超过某个阈值，就可以认为是一个人，以这个峰值为中心绘制一个和滤波器大小一致的框，即可完成人的检测。
+
+这个具体的方法和我最初的想法差距不大，就是在训练的部分不太一致。这又涉及到一个问题，这样的方法应该怎么实现，我认为手动实现的滑动窗卷积算法时间复杂度太高了，计算一张正常图像太久了（后面想看看opencv上有没有什么现成的API实现卷积），接着就是完成数据集构造，最后按照论文的相关思路实现代码复现（可以参考一下文章1中的matlab源码）。
+
+
+
+
+
+参考资料：
+
+1. [Object detection and tracking benchmark in industry based on improved correlation filter ](https://link.springer.com/article/10.1007/s11042-018-6079-1)
+2.  [Simple real-time human detection using a single correlation filter](https://ieeexplore.ieee.org/abstract/document/5399555)
