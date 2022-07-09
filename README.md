@@ -112,13 +112,13 @@
 ## Task 3:
 
 
-- [ ] 将相关滤波检测算法扩展应用到相似形状物体检测领域。(诸如细胞核检测、汽车检测等场景)
+- [x] 将相关滤波检测算法扩展应用到相似形状物体检测领域。(诸如细胞核检测、汽车检测等场景)
 
 **初步想法**：相关滤波依赖于第一次给定的检测窗，这个检测窗会生成一个高斯峰，这个高斯峰的中心就是目标的中心，利用这一特点可以生成论文中的A和B（可以通过预训练的方式生成，也可以直接生成），然后通过这两个东西生成H，**先通过其计算出目标物体的相关性，然后使用滑动窗的方法，遍历图像的像素，依赖这个这个滤波器，计算出在这个滑动窗位置的相关性，依据这个相关性和目标进行比对，如果差距不超过一定的阈值，就说明他们是相似物体。**
 
 (ps：突然想起来好像写上时间比较好)
 
-**2022.7.28**
+**2022.7.8**
 
 非常遗憾，初步想法好像并没有我想的那么简单，单凭一个检测框去获得相似图像的结果还是太单纯了。
 
@@ -148,7 +148,29 @@ matlab上的源码（dijkstra的那个论文）只有跟踪的，我按着第2�
 1. 数据集的输入肯定是图像，然后生成一个相关图，这个相关图是怎没做呢。和MOSSE生成高斯图是一样的，但是和我设想的方法不一样的是，他在参考资料4的论文中一张图像只对应一个高斯峰值，也就是说一张图像只检测一个物体（虽然他说可以通过设置多个峰值实现，多个物体检测，但是多个高斯分布图的结合还有待学习，现在想法是先完成一张图只检测一个相似物体）
 2. 然后现在有一个问题，如果是一张图像和一个相关图进行训练，那么滤波器的尺寸就要和图像和相关图大小相等，这样的话滤波器是不是太大了，参数太多的话训练起来好像也不太好。有一个解决方案是，resize这个图像，使滤波器变小，然后在获得输出结果之后再根据缩放比例将峰值映射回原图，并绘制一个检测框。那么问题又来了，这个滤波器的大小设置为多大合适呢？要不设置成超参数？
 
+**顺利完成！！！！**
 
+这次是使用了一个新的数据集，由于我没有找到细胞核检测合适的数据集，所以找了个细胞检测分割的数据集，我通过手动标注他的高斯分布响应图，加上水平垂直翻转的数据增强方法，构造了这个数据集（实现的代码为：[detect.py](https://github.com/zeroRains/Task-for-object-chacking/blob/master/Task_3/detect.py#L1)）。现在的算法是
+
+1. 读取图像和GT，将他们堆叠成一个NxHxW的向量
+2. 使用预处理处理图像，解决边界效应
+3. 根据MOSSE的公式生成相关滤波H的共轭需要的Ai和Bi并进行预训练
+4. 将训练好的Ai和Bi计算出滤波器H的共轭存储到类的属性中，并将滤波器参数保存成文件
+5. 在推理中，先读取图片，预处理图像
+6. 使用之前生成好的滤波器H的共轭与转化到傅里叶域的预处理图像进行element-wise乘法
+7. 将计算结果转回空间域
+8. 寻找出峰值所在的坐标
+9. 将坐标映射回原图像，这个坐标就是要寻找目标的中心
+10. 以这个坐标为中心，向外绘制一定半径的园，就能把我们的目标标记出来
+
+这个方法可以实现相似形状的物体检测，但是仍然有一定的局限性
+
+1. 目前我只做了一张图像一个相似物体的检测，后面会尝试一下，一张图像多个物体的检测
+2. 由于滤波器生成的结果只能定位到目标物体的中心，所以边界框的大小只能是定死的，感觉没有比较有效的方法去改变边界框的尺寸，这与使用MOSSE进行跟踪是一致的，MOSSE在跟踪上只能对检测框的中心进行移动，而不能改变检测框本身的尺寸。
+
+现在的检测结果如下图所示：
+
+![](./images/fig5.png)
 
 
 
@@ -157,4 +179,6 @@ matlab上的源码（dijkstra的那个论文）只有跟踪的，我按着第2�
 1. [Object detection and tracking benchmark in industry based on improved correlation filter ](https://link.springer.com/article/10.1007/s11042-018-6079-1)
 2.  [Simple real-time human detection using a single correlation filter](https://ieeexplore.ieee.org/abstract/document/5399555)
 3. [OpenCV 图像卷积：cv.filter2D() 函数详解](https://blog.csdn.net/hysterisis/article/details/113097507)
-4. [Average of Synthetic Exact Filters | IEEE Conference Publication | IEEE Xplore](https://ieeexplore.ieee.org/document/5206701)
+4. [Average of Synthetic Exact Filters](https://ieeexplore.ieee.org/document/5206701)
+5. [ASEF（阅读笔记）](https://blog.csdn.net/kaka_36/article/details/18353155)
+6. [zxaoyou/segmentation_WBC: White blood cell (WBC) image datasets ](https://github.com/zxaoyou/segmentation_WBC)
