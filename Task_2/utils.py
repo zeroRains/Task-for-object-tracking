@@ -13,7 +13,7 @@ def generate_gauss_map(img, gt, sigma):
     center_x = gt[0] + 0.5 * gt[2]
     center_y = gt[1] + 0.5 * gt[3]
     # 计算距离
-    dist = (np.square(xx - center_x) + np.square(yy - center_y)) / (2 * sigma)
+    dist = (np.square(xx - center_x) + np.square(yy - center_y)) / (sigma * 2)
     # 映射到0~1之中
     response = np.exp(-dist)
     # 归一化
@@ -50,7 +50,7 @@ def random_warp(img):
     return img_rot
 
 
-def pretrain(img, G, pretrain_num):
+def pretrain(img, G, pretrain_num, lr=0.125):
     h, w = G.shape
     # 预处理(用来解决目标的不连续问题)
     fi = pre_process(cv2.resize(img, (w, h)))
@@ -59,8 +59,8 @@ def pretrain(img, G, pretrain_num):
     Bi = np.fft.fft2(img) * np.conjugate(np.fft.fft2(img))
     for _ in range(pretrain_num):
         fi = pre_process(img)
-        Ai = Ai + G * np.conjugate(np.fft.fft2(fi))
-        Bi = Bi + np.fft.fft2(fi) * np.conjugate(np.fft.fft2(fi))
+        Ai = (1 - lr) * Ai + lr * G * np.conjugate(np.fft.fft2(fi))
+        Bi = (1 - lr) * Bi + lr * np.fft.fft2(fi) * np.conjugate(np.fft.fft2(fi))
     return Ai, Bi
 
 

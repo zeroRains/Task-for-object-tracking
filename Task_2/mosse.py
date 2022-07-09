@@ -45,7 +45,7 @@ class MOSSE:
                     fi = first_frame[first_gt[1]:first_gt[1] + first_gt[3], first_gt[0]:first_gt[0] + first_gt[2]]
                     # 转化到频域
                     G = np.fft.fft2(gi)
-                    Ai, Bi = pretrain(fi, G, self.pretrain_num)
+                    Ai, Bi = pretrain(fi, G, self.pretrain_num, self.lr)
                     Ai = self.lr * Ai
                     Bi = self.lr * Bi
                     pos = first_gt.copy()
@@ -102,8 +102,8 @@ class MOSSE:
 
 
 if __name__ == '__main__':
-    filter_mosse = MOSSE(show_in_window=True, pretrain_num=128, sigma=100.0)
-    filter_mosse.run('../source/demo2.avi', 'result.avi')
+    filter_mosse = MOSSE(show_in_window=True, pretrain_num=128, sigma=100)
+    filter_mosse.run('../source/demo.mp4', 'result.avi')
     filter_mosse.psr = np.array(filter_mosse.psr)
     print(filter_mosse.psr)
     print(filter_mosse.psr.max())
