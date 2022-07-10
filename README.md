@@ -6,9 +6,9 @@
 
 帧差法：当视频中存在移动物体时，相邻帧之间在灰度上会有所差别，求取两帧图像的灰度差的绝对值，则静止的物体的像素在这个差值结果中的灰度值为0，而移动物体特别是该物体的轮廓处由于存在灰度变化为非0，这样就能大致计算出移动物体的位置，轮廓以及移动路径。
 
-实现代码：[frame_difference](https://github.com/zeroRains/Task-for-object-chacking/blob/master/Task_1/frame_difference_method.py#L1)
+实现代码：[frame_difference](https://github.com/zeroRains/Task-for-object-tracking/blob/master/Task_1/frame_difference_method.py#L1)
 
-实现效果：[result.avi](https://github.com/zeroRains/Task-for-object-chacking/raw/master/Task_1/result.avi)
+实现效果：[result.avi](https://github.com/zeroRains/Task-for-object-tracking/raw/master/Task_1/result.avi)
 
 实现过程：根据参考资料2，学习了帧差法的基础概念，因为他加了很多的图像处理方式，比如高斯平滑，腐蚀，膨胀等，我想试试如果单独只用差分法的结果会怎样，下面将展示部分单独使用差分法，使用高斯滤波，使用腐蚀肿胀，控制轮廓边长输出等等情况。我在实现代码中将帧差法封装成类，设置了四个可以变动的参数。
 
@@ -57,9 +57,9 @@
 
 论文学习记录：[「论文阅读」Visual Object Tracking using Adaptive Correlation Filters](https://blog.zerorains.top/2022/07/02/%E3%80%8C%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E3%80%8DVisual-Object-Tracking-using-Adaptive-Correlation-Filters/)
 
-实现代码：[mosse](https://github.com/zeroRains/Task-for-object-chacking/blob/master/Task_2/mosse.py#L1)
+实现代码：[mosse](https://github.com/zeroRains/Task-for-object-tracking/blob/master/Task_2/mosse.py#L1)
 
-实现效果：[result.avi](https://github.com/zeroRains/Task-for-object-chacking/raw/master/Task_2/result.avi)
+实现效果：[result.avi](https://github.com/zeroRains/Task-for-object-tracking/raw/master/Task_2/result.avi)
 
 复现细节：
 
@@ -152,7 +152,7 @@ matlab上的源码（dijkstra的那个论文）只有跟踪的，我按着第2�
 
 这次是使用了一个新的数据集，由于我没有找到细胞核检测合适的数据集，所以找了个细胞检测分割的数据集，我通过手动标注他的高斯分布响应图，加上水平垂直翻转的数据增强方法，构造了这个数据集
 
-实现的代码为：[detect_single_target.py](https://github.com/zeroRains/Task-for-object-chacking/blob/master/Task_3/detect.py#L1)
+实现的代码为：[detect_single_target.py](https://github.com/zeroRains/Task-for-object-tracking/blob/master/Task_3/detect.py#L1)
 
 现在的算法是：
 
@@ -180,7 +180,19 @@ matlab上的源码（dijkstra的那个论文）只有跟踪的，我按着第2�
 
 按照参考文献5中的说法，对于多目标检测的话他应该是只需要在标记上多标记几个峰值就可以了，其他的处理过程都是一致的。我从driveSeg数据中筛选出40张车辆的图像，然后对车辆的中心位置进行标记，实现了一张拥有多个高斯峰值的GT。在训练完成后，他仍然是只存在一个峰值，并且，这个峰值总是在中心位置附近，我现在有点怀疑，单物体检测（细胞检测）的成功是否是因为他的目标正好在图像的中心，但是我仔细核对代码和论文的对应，基本上每一步都是对得上的，这就很奇怪了。
 
-后面我在查找资料的过程中，发现了参考文献7：[Correlation Filters for Detection of Cellular Nuclei in Histopathology Images](https://link.springer.com/article/10.1007/s10916-017-0863-8)，在学习这篇论文的过程中，我发现我的操作与其描述的内容一致，唯一不同之处就在于我们使用的数据集与其不同，似乎他用的数据集是之前就被标记好的。这篇文章的代码是开源的，我后面打算仔细研究一下他的代码，在查看一下他使用的数据集和我自制的数据集有何不同（会不会是我自制的数据集图像太少了，使得训练结果并不好，找了4-5天了总算找到个可以参考的代码了）。
+后面我在查找资料的过程中，发现了参考资料7：[Correlation Filters for Detection of Cellular Nuclei in Histopathology Images](https://link.springer.com/article/10.1007/s10916-017-0863-8)，在学习这篇论文的过程中，我发现我的操作与其描述的内容一致，唯一不同之处就在于我们使用的数据集与其不同，似乎他用的数据集是之前就被标记好的。这篇文章的代码是开源的，我后面打算仔细研究一下他的代码，在查看一下他使用的数据集和我自制的数据集有何不同（会不会是我自制的数据集图像太少了，使得训练结果并不好，找了4-5天了总算找到个可以参考的代码了）。
+
+怪了，我自己写的代码，和参考资料7中提供的代码本质上都一样呀，为什么会得不到好的结果呢？难道真的是数据集少了？那我用他的数据集试试。
+
+**新发现**：
+
+我在学习了他的源码之后，发现他使用的滤波器和图像是相同大小的，但是我把我的滤波器缩放到固定大小了，后面我尝试使用和原图大小一样的滤波器，结果他在相关图上（就是H和F计算出的G在空间域上的gi）峰值点的位置上，对应原图中的目标，并且峰值点不止一个。然后又产生一个问题，这些峰值点的数值不统一，即不全是gi的max，用阈值来控制他和gi.max的差距时，gi.max周围的几个像素，与gi的差距又会比较明显。所以得想办法区分出他们的这些峰值。
+
+还要一个情况就是我的数据集只有40张图像，是在太少了，导致效果只对训练的图像表现较好。部分结果如下图
+
+![](./images/fig6.jpg)
+
+所以后面还是尝试一下参考资料7中提到的数据集。
 
 参考资料：
 

@@ -127,7 +127,7 @@ class Detector:
             cv2.waitKey(0)
             cv2.destroyAllWindows()
         # 保存检测结果
-        cv2.imwrite("result.jpg", img)
+        cv2.imwrite("../images/fig6.jpg", img)
         print("get the result!")
 
     def load(self, path):

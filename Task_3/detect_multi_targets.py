@@ -31,7 +31,7 @@ class Detector:
     相关滤波检测器类
     """
 
-    def __init__(self, pretrain_num=3000, h=100, w=100, show_in_window=False):
+    def __init__(self, pretrain_num=4, h=720, w=1280, show_in_window=False):
         """
         构造函数
         :param pretrain_num:预训练轮数
@@ -59,7 +59,7 @@ class Detector:
                 # 读取图像，灰度化，resize成相关滤波器的大小，为方便计算转化成浮点数
                 img = cv2.imread(now, -1)
                 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-                gray = cv2.resize(gray, (self.cell_w, self.cell_h))
+                # gray = cv2.resize(gray, (self.cell_w, self.cell_h))
                 gray = gray.astype(np.float32)
                 # 读取ground-truth，应该是浮点数的响应值，但是在保存的时候只能保存uin8，所以乘了个255
                 # 在这里使用的时候要除以255
@@ -103,7 +103,7 @@ class Detector:
         # 读取一张图像，变成灰度图，resize成滤波器大小，浮点数转换
         img = cv2.imread(img_path, -1)
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        gray = cv2.resize(gray, (self.cell_w, self.cell_h))
+        # gray = cv2.resize(gray, (self.cell_w, self.cell_h))
         gray = gray.astype(np.float32)
         # 图像预处理
         fi = pre_process(gray)
@@ -112,11 +112,12 @@ class Detector:
         # 相应图映射回空间域
         gi = np.fft.ifft2(Gi)
         # 寻找峰值的坐标
-        h, w = np.where(gi == gi.max())
-        # 将坐标映射回原图
-        h, w = int(1.0 * h * img.shape[0] / gray.shape[0]), int(1.0 * w * img.shape[1] / gray.shape[1])
-        # 圈出目标
-        cv2.circle(img, (w, h), 1, (0, 0, 255), 30)
+        h, w = np.where(gi.max() - gi < 0.002)
+        # h, w = np.where(gi.max() == gi)
+        print(f"peak: {gi.max().real}")
+        for x, y in zip(w, h):
+            # 圈出目标
+            cv2.circle(img, (x, y), 1, (0, 0, 255), 30)
 
         # 显示检测结果
         if self.show_in_windows:
@@ -126,7 +127,7 @@ class Detector:
             cv2.waitKey(0)
             cv2.destroyAllWindows()
         # 保存检测结果
-        cv2.imwrite("result.jpg", img)
+        cv2.imwrite("../images/fig6.jpg", img)
         print("get the result!")
 
     def load(self, path):
@@ -148,7 +149,7 @@ class Detector:
 
 if __name__ == '__main__':
     detector = Detector(show_in_window=True)  # 实例化图像
-    detector.train('car_path.txt')  # 训练相关滤波器
+    # detector.train('car_path.txt')  # 训练相关滤波器
     # detector.save('./model_multi_targets.npy')  # 保存滤波器成文件
-    # detector.load('./model_multi_targets.npy')  # 加载滤波器文件
-    detector.run('../source/car/0299.png')  # 检测相似物体
+    detector.load('./model_multi_targets.npy')  # 加载滤波器文件
+    detector.run('../source/car.png')  # 检测相似物体

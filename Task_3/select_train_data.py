@@ -5,7 +5,7 @@ import numpy as np
 from Task_2.utils import normalization
 from tqdm import tqdm
 
-w, h = (100, 100)  # 滤波器大小
+
 
 
 def get_file_txt(path, path_file):
@@ -38,8 +38,8 @@ def generate_gauss_map(img, gt, sigma):
     h, w = img.shape
     xx, yy = np.meshgrid(np.arange(w), np.arange(h))
     # 获取目标的中心
-    center_x = gt[0]
-    center_y = gt[1]
+    center_x = gt[0] + 0.5 * gt[2]
+    center_y = gt[1] + 0.5 * gt[3]
     # 计算距离
     dist = (np.square(xx - center_x) + np.square(yy - center_y)) / (sigma * 2)
     # 映射到0~1之中
@@ -54,7 +54,6 @@ def generate_gauss_label(path_file, sigma=2):
         for i in tqdm(files):
             now = i.strip()
             img = cv2.imread(now, -1)
-            img = cv2.resize(img, (w, h))
             box = cv2.selectROI('demo', img, False, False)
             box = np.array(box).astype(np.int64)
             cv2.destroyAllWindows()
@@ -80,13 +79,10 @@ def generate_multi_gauss_label(path_file, sigma=2):
                 if k == 27:
                     break
                 boxes.append(list(box))
-            tmp = cv2.resize(img, (w, h))
-            gray = cv2.cvtColor(tmp, cv2.COLOR_BGR2GRAY)
+            gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
             gray = gray.astype(np.float32)
             gauss_map = np.zeros(gray.shape)
             for box in boxes:
-                box[0] = int(1.0 * box[0] * gray.shape[1] / img.shape[1])
-                box[1] = int(1.0 * box[1] * gray.shape[0] / img.shape[0])
                 gauss_gt = generate_gauss_map(gray, box, sigma)
                 gauss_map += gauss_gt
             gauss_map = np.clip(gauss_map, 0., 1.)
