@@ -31,7 +31,7 @@ class Detector:
     相关滤波检测器类
     """
 
-    def __init__(self, pretrain_num=128, h=100, w=100, show_in_window=False):
+    def __init__(self, pretrain_num=3000, h=100, w=100, show_in_window=False):
         """
         构造函数
         :param pretrain_num:预训练轮数
@@ -63,15 +63,15 @@ class Detector:
                 gray = gray.astype(np.float32)
                 # 读取ground-truth，应该是浮点数的响应值，但是在保存的时候只能保存uin8，所以乘了个255
                 # 在这里使用的时候要除以255
-                gt = cv2.imread(now.replace('.bmp', '_gauss.png'), -1)
+                gt = cv2.imread(now.replace('.png', '_gauss.png'), -1)
                 gt = gt.astype(np.float32)
                 gt /= 255.0
                 # 数据增强
                 imgs.append(gray)
                 gts.append(gt)
-                # 水平镜像翻转
-                imgs.append(cv2.flip(gray, 0))
-                gts.append(cv2.flip(gt, 0))
+                # # 水平镜像翻转
+                # imgs.append(cv2.flip(gray, 0))
+                # gts.append(cv2.flip(gt, 0))
                 # 垂直镜像翻转
                 imgs.append(cv2.flip(gray, 1))
                 gts.append(cv2.flip(gt, 1))
@@ -84,14 +84,15 @@ class Detector:
         fi = pre_process_n(train_img)
         # MOSSE滤波器生成公式
         Ai = G * np.conjugate(np.fft.fft2(fi))
-        Bi = np.fft.fft2(train_img) * np.conjugate(np.fft.fft2(train_img))
-        # 滤波器生成预训练
-        for _ in tqdm(range(self.pretrain_num)):
-            fi = pre_process_n(train_img)
-            Ai = Ai + G * np.conjugate(np.fft.fft2(fi))
-            Bi = Bi + np.fft.fft2(fi) * np.conjugate(np.fft.fft2(fi))
+        Bi = np.fft.fft2(fi) * np.conjugate(np.fft.fft2(fi))
+        # # 滤波器生成预训练
+        # for _ in tqdm(range(self.pretrain_num)):
+        #     fi = pre_process_n(train_img)
+        #     Ai = Ai + G * np.conjugate(np.fft.fft2(fi))
+        #     Bi = Bi + np.fft.fft2(fi) * np.conjugate(np.fft.fft2(fi))
         # 存储生成的滤波器
-        self.cell = (Ai / Bi).mean(axis=0)
+        # self.cell = (Ai / Bi).mean(axis=0)
+        self.cell = Ai.sum(axis=0) / Bi.sum(axis=0)
         print("finished pretrain!")
 
     def run(self, img_path):
@@ -114,11 +115,9 @@ class Detector:
         h, w = np.where(gi == gi.max())
         # 将坐标映射回原图
         h, w = int(1.0 * h * img.shape[0] / gray.shape[0]), int(1.0 * w * img.shape[1] / gray.shape[1])
-        # 确定以w，h为中心画的园半径是多少
-        r = int(30.0 * img.shape[0] / gray.shape[0])
         # 圈出目标
-        cv2.circle(img, (w, h), 1, (0, 0, 255), 15)
-        cv2.circle(img, (w, h), r, (255, 0, 0), 5)
+        cv2.circle(img, (w, h), 1, (0, 0, 255), 30)
+
         # 显示检测结果
         if self.show_in_windows:
             cv2.imshow('result', img)
@@ -148,8 +147,8 @@ class Detector:
 
 
 if __name__ == '__main__':
-    detector = Detector(show_in_window=False)  # 实例化图像
-    # detector.train('data_path.txt')  # 训练相关滤波器
-    # detector.save('./model.npy')  # 保存滤波器成文件
-    detector.load('./model.npy')  # 加载滤波器文件
-    detector.run('../source/cell.bmp')  # 检测相似物体
+    detector = Detector(show_in_window=True)  # 实例化图像
+    detector.train('car_path.txt')  # 训练相关滤波器
+    # detector.save('./model_multi_targets.npy')  # 保存滤波器成文件
+    # detector.load('./model_multi_targets.npy')  # 加载滤波器文件
+    detector.run('../source/car/0299.png')  # 检测相似物体

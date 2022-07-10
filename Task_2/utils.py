@@ -56,7 +56,7 @@ def pretrain(img, G, pretrain_num, lr=0.125):
     fi = pre_process(cv2.resize(img, (w, h)))
     # 计算
     Ai = G * np.conjugate(np.fft.fft2(fi))
-    Bi = np.fft.fft2(img) * np.conjugate(np.fft.fft2(img))
+    Bi = np.fft.fft2(fi) * np.conjugate(np.fft.fft2(fi))
     for _ in range(pretrain_num):
         fi = pre_process(img)
         Ai = (1 - lr) * Ai + lr * G * np.conjugate(np.fft.fft2(fi))

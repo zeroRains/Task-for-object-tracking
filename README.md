@@ -150,7 +150,11 @@ matlab上的源码（dijkstra的那个论文）只有跟踪的，我按着第2�
 
 **顺利完成！！！！**
 
-这次是使用了一个新的数据集，由于我没有找到细胞核检测合适的数据集，所以找了个细胞检测分割的数据集，我通过手动标注他的高斯分布响应图，加上水平垂直翻转的数据增强方法，构造了这个数据集（实现的代码为：[detect.py](https://github.com/zeroRains/Task-for-object-chacking/blob/master/Task_3/detect.py#L1)）。现在的算法是
+这次是使用了一个新的数据集，由于我没有找到细胞核检测合适的数据集，所以找了个细胞检测分割的数据集，我通过手动标注他的高斯分布响应图，加上水平垂直翻转的数据增强方法，构造了这个数据集
+
+实现的代码为：[detect_single_target.py](https://github.com/zeroRains/Task-for-object-chacking/blob/master/Task_3/detect.py#L1)
+
+现在的算法是：
 
 1. 读取图像和GT，将他们堆叠成一个NxHxW的向量
 2. 使用预处理处理图像，解决边界效应
@@ -172,7 +176,11 @@ matlab上的源码（dijkstra的那个论文）只有跟踪的，我按着第2�
 
 ![](./images/fig5.png)
 
+**2022.7.10**
 
+按照参考文献5中的说法，对于多目标检测的话他应该是只需要在标记上多标记几个峰值就可以了，其他的处理过程都是一致的。我从driveSeg数据中筛选出40张车辆的图像，然后对车辆的中心位置进行标记，实现了一张拥有多个高斯峰值的GT。在训练完成后，他仍然是只存在一个峰值，并且，这个峰值总是在中心位置附近，我现在有点怀疑，单物体检测（细胞检测）的成功是否是因为他的目标正好在图像的中心，但是我仔细核对代码和论文的对应，基本上每一步都是对得上的，这就很奇怪了。
+
+后面我在查找资料的过程中，发现了参考文献7：[Correlation Filters for Detection of Cellular Nuclei in Histopathology Images](https://link.springer.com/article/10.1007/s10916-017-0863-8)，在学习这篇论文的过程中，我发现我的操作与其描述的内容一致，唯一不同之处就在于我们使用的数据集与其不同，似乎他用的数据集是之前就被标记好的。这篇文章的代码是开源的，我后面打算仔细研究一下他的代码，在查看一下他使用的数据集和我自制的数据集有何不同（会不会是我自制的数据集图像太少了，使得训练结果并不好，找了4-5天了总算找到个可以参考的代码了）。
 
 参考资料：
 
@@ -182,3 +190,5 @@ matlab上的源码（dijkstra的那个论文）只有跟踪的，我按着第2�
 4. [Average of Synthetic Exact Filters](https://ieeexplore.ieee.org/document/5206701)
 5. [ASEF（阅读笔记）](https://blog.csdn.net/kaka_36/article/details/18353155)
 6. [zxaoyou/segmentation_WBC: White blood cell (WBC) image datasets ](https://github.com/zxaoyou/segmentation_WBC)
+6. [Correlation Filters for Detection of Cellular Nuclei in Histopathology Images](https://link.springer.com/article/10.1007/s10916-017-0863-8)
+6. [foxtrotmike/CoreHist: Correlation Filters for Detection of Cellular Nuclei in Histopathology Images ](https://github.com/foxtrotmike/CoreHist)

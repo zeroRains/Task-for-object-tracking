@@ -103,7 +103,7 @@ class MOSSE:
 
 if __name__ == '__main__':
     filter_mosse = MOSSE(show_in_window=True, pretrain_num=128, sigma=100)
-    filter_mosse.run('../source/demo.mp4', 'result.avi')
+    filter_mosse.run('../source/demo2.avi', 'result.avi')
     filter_mosse.psr = np.array(filter_mosse.psr)
     print(filter_mosse.psr)
     print(filter_mosse.psr.max())

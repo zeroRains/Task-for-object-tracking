@@ -6,13 +6,15 @@ from Task_2.utils import normalization
 from tqdm import tqdm
 
 w, h = (100, 100)  # 滤波器大小
-cnt = 0
-
-path = r'E:\datasets\segmentation_WBC'  # 数据路径
-path_file = 'data_path.txt'  # 输出文件名称
 
 
-def get_file_txt():
+def get_file_txt(path, path_file):
+    """
+
+    :param path: 数据路径
+    :param path_file: 输出文件名称
+    :return:
+    """
     data1 = pd.read_csv(os.path.join(path, r'Class Labels of Dataset 1.csv'))
     data2 = pd.read_csv(os.path.join(path, r'Class Labels of Dataset 2.csv'))
     images_id = np.array(data1[data1[r'class label'] == 1][r'image ID'])
@@ -21,6 +23,14 @@ def get_file_txt():
     with open(path_file, 'w+') as f:
         for i in images_id:
             path_img = os.path.join(path, use_data, f"{str(i).zfill(3)}.bmp")
+            f.write(f'{path_img}\n')
+
+
+def generate_file_txt(path, path_file):
+    files = os.listdir(path)
+    with open(path_file, 'w+') as f:
+        for i in files:
+            path_img = os.path.join(path, i)
             f.write(f'{path_img}\n')
 
 
@@ -38,7 +48,7 @@ def generate_gauss_map(img, gt, sigma):
     return normalization(response)
 
 
-def generate_gauss_label(sigma=2):
+def generate_gauss_label(path_file, sigma=2):
     with open(path_file, 'r+') as f:
         files = f.readlines()
         for i in tqdm(files):
@@ -55,6 +65,37 @@ def generate_gauss_label(sigma=2):
             cv2.imwrite(now.replace(".bmp", "_gauss.png"), gauss_gt)
 
 
+def generate_multi_gauss_label(path_file, sigma=2):
+    with open(path_file, 'r+') as f:
+        files = f.readlines()
+        for i in tqdm(files):
+            now = i.strip()
+            img = cv2.imread(now, -1)
+            boxes = []
+            while True:
+                box = cv2.selectROI('demo', img, False, False)
+                box = np.array(box).astype(np.int64)
+                k = cv2.waitKey(0)
+                cv2.destroyAllWindows()
+                if k == 27:
+                    break
+                boxes.append(list(box))
+            tmp = cv2.resize(img, (w, h))
+            gray = cv2.cvtColor(tmp, cv2.COLOR_BGR2GRAY)
+            gray = gray.astype(np.float32)
+            gauss_map = np.zeros(gray.shape)
+            for box in boxes:
+                box[0] = int(1.0 * box[0] * gray.shape[1] / img.shape[1])
+                box[1] = int(1.0 * box[1] * gray.shape[0] / img.shape[0])
+                gauss_gt = generate_gauss_map(gray, box, sigma)
+                gauss_map += gauss_gt
+            gauss_map = np.clip(gauss_map, 0., 1.)
+            gauss_map *= 255
+            cv2.imwrite(now.replace(".png", "_gauss.png"), gauss_map)
+
+
 if __name__ == '__main__':
-    # get_file_txt() # 生成图像文件(data_path.txt)
-    generate_gauss_label()  # 标记目标中心点并生成高斯图
+    # get_file_txt(r'E:\datasets\segmentation_WBC','data_path.txt') # 生成图像文件(细胞,data_path.txt)
+    # generate_gauss_label('data_path.txt')  # 标记目标中心点并生成高斯图(细胞,单一目标)
+    # generate_file_txt("../source/car", "car_path.txt")  # 生成图像文件（车辆，car_path.txt）
+    generate_multi_gauss_label("car_path.txt")  # 标记目标中心并生成高斯图(车辆,多个目标)
