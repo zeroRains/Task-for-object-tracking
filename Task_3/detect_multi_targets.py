@@ -127,7 +127,7 @@ class Detector:
             cv2.waitKey(0)
             cv2.destroyAllWindows()
         # 保存检测结果
-        cv2.imwrite("../images/fig6.jpg", img)
+        cv2.imwrite("result.jpg", img)
         print("get the result!")
 
     def load(self, path):
@@ -152,4 +152,4 @@ if __name__ == '__main__':
     # detector.train('car_path.txt')  # 训练相关滤波器
     # detector.save('./model_multi_targets.npy')  # 保存滤波器成文件
     detector.load('./model_multi_targets.npy')  # 加载滤波器文件
-    detector.run('../source/car.png')  # 检测相似物体
+    detector.run('../source/car/0008.png')  # 检测相似物体

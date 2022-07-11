@@ -194,6 +194,10 @@ matlab上的源码（dijkstra的那个论文）只有跟踪的，我按着第2�
 
 所以后面还是尝试一下参考资料7中提到的数据集。
 
+**2022.7.11**
+
+今天尝试了使用资料7中的数据集，采用之前汽车检测的方法对结果进行训练，实验结果比较惨，基本上该有的东西都没有，所以后面打算参考一下资料7的代码，分析之前在哪个地方有问题（感觉是在标签制作上有点问题）
+
 参考资料：
 
 1. [Object detection and tracking benchmark in industry based on improved correlation filter ](https://link.springer.com/article/10.1007/s11042-018-6079-1)
