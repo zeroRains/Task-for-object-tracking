@@ -2,7 +2,7 @@ from Task_2.utils import pre_process, normalization
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
-from skimage.io import imshow, imread
+from skimage.io import imshow, imread, imsave
 from tqdm import tqdm
 
 
@@ -213,7 +213,10 @@ class Detector:
             # cv2.waitKey(0)
             # cv2.destroyAllWindows()
         # 保存检测结果
-        cv2.imwrite("result.png", img)
+        # cv2.imwrite("result.png", img)
+        imsave("result1.png", img)
+        imsave("result2.png", cor)
+        imsave('result3.png', imread(self.eval_gt))
         print("get the result!")
 
     def load(self, path):
@@ -237,6 +240,6 @@ if __name__ == '__main__':
     index = np.random.randint(1, 100)
     detector = Detector(eval_img=f'img{index}.bmp', show_in_window=True)  # 实例化图像
     detector.train('cell_path.txt')  # 训练相关滤波器
-    detector.save('./model_multi_targets.npy')  # 保存滤波器成文件
-    # detector.load('./model_multi_targets.npy')  # 加载滤波器文件
+    detector.save('./model_multi_targets_cell.npy')  # 保存滤波器成文件
+    # detector.load('./model_multi_targets_cell.npy')  # 加载滤波器文件
     detector.run()  # 检测相似物体

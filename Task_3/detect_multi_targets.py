@@ -2,6 +2,7 @@ from Task_2.utils import pre_process, normalization
 import cv2
 import numpy as np
 from tqdm import tqdm
+from skimage.io import imsave
 
 
 def pre_process_n(img):
@@ -111,6 +112,7 @@ class Detector:
         Gi = np.fft.fft2(fi) * self.cell
         # 相应图映射回空间域
         gi = np.fft.ifft2(Gi)
+        imsave('result1.jpg', gi.real)
         # 寻找峰值的坐标
         h, w = np.where(gi.max() - gi < 0.002)
         # h, w = np.where(gi.max() == gi)
@@ -128,6 +130,8 @@ class Detector:
             cv2.destroyAllWindows()
         # 保存检测结果
         cv2.imwrite("result.jpg", img)
+        cv2.imwrite('result2.jpg',
+                    cv2.resize((normalization(gi.real) * 255.0).astype(np.uint8), (img.shape[1], img.shape[0])))
         print("get the result!")
 
     def load(self, path):
