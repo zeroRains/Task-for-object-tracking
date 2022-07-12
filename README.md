@@ -152,7 +152,7 @@ matlab上的源码（dijkstra的那个论文）只有跟踪的，我按着第2�
 
 这次是使用了一个新的数据集，由于我没有找到细胞核检测合适的数据集，所以找了个细胞检测分割的数据集，我通过手动标注他的高斯分布响应图，加上水平垂直翻转的数据增强方法，构造了这个数据集
 
-实现的代码为：[detect_single_target.py](https://github.com/zeroRains/Task-for-object-tracking/blob/master/Task_3/detect.py#L1)
+实现的代码为：[detect_single_target.py](https://github.com/zeroRains/Task-for-object-tracking/blob/master/Task_3/detect_single_target.py#L1)
 
 现在的算法是：
 
@@ -188,6 +188,8 @@ matlab上的源码（dijkstra的那个论文）只有跟踪的，我按着第2�
 
 我在学习了他的源码之后，发现他使用的滤波器和图像是相同大小的，但是我把我的滤波器缩放到固定大小了，后面我尝试使用和原图大小一样的滤波器，结果他在相关图上（就是H和F计算出的G在空间域上的gi）峰值点的位置上，对应原图中的目标，并且峰值点不止一个。然后又产生一个问题，这些峰值点的数值不统一，即不全是gi的max，用阈值来控制他和gi.max的差距时，gi.max周围的几个像素，与gi的差距又会比较明显。所以得想办法区分出他们的这些峰值。
 
+实现代码：[detect_multi_targets.py ](https://github.com/zeroRains/Task-for-object-tracking/blob/master/Task_3/detect_multi_targets.py#L1)
+
 还要一个情况就是我的数据集只有40张图像，实在太少了，导致效果只对训练的图像表现较好。部分结果如下图
 
 ![](./images/fig6.gif)
@@ -207,6 +209,8 @@ matlab上的源码（dijkstra的那个论文）只有跟踪的，我按着第2�
 ![](./images/fig7.gif)
 
 第一张明显的细胞图像是原图，第二张灰度的结果是相关图可视化后的结果（即使用相关滤波器处理的结果），第三张二值图像就是Ground Truth。从结果上看，相关图中的极大值点大部分对应了GT中的细胞核位置，说明预测是有一定效果的，但是现在面临一个问题，虽然他们都是极值点，但是他们的实际的数值不是全都一样的，这就导致的了即使检测出了细胞核仍然难以通过相关图获取到对应细胞的坐标（因为我现在还没有查到获取图像中这些突出的极值点坐标的方法）。所以，对方提供的代码仍然是有一些不足的。
+
+实现代码：[detect_multi_targets_cell.py](https://github.com/zeroRains/Task-for-object-tracking/blob/master/Task_3/detect_multi_targets_cell.py)
 
 参考资料：
 
