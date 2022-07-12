@@ -1,176 +1,176 @@
-E:\datasets\segmentation_WBC\Dataset 1\002.bmp
-E:\datasets\segmentation_WBC\Dataset 1\003.bmp
-E:\datasets\segmentation_WBC\Dataset 1\004.bmp
-E:\datasets\segmentation_WBC\Dataset 1\005.bmp
-E:\datasets\segmentation_WBC\Dataset 1\006.bmp
-E:\datasets\segmentation_WBC\Dataset 1\008.bmp
-E:\datasets\segmentation_WBC\Dataset 1\009.bmp
-E:\datasets\segmentation_WBC\Dataset 1\010.bmp
-E:\datasets\segmentation_WBC\Dataset 1\011.bmp
-E:\datasets\segmentation_WBC\Dataset 1\012.bmp
-E:\datasets\segmentation_WBC\Dataset 1\014.bmp
-E:\datasets\segmentation_WBC\Dataset 1\015.bmp
-E:\datasets\segmentation_WBC\Dataset 1\017.bmp
-E:\datasets\segmentation_WBC\Dataset 1\018.bmp
-E:\datasets\segmentation_WBC\Dataset 1\020.bmp
-E:\datasets\segmentation_WBC\Dataset 1\022.bmp
-E:\datasets\segmentation_WBC\Dataset 1\023.bmp
-E:\datasets\segmentation_WBC\Dataset 1\024.bmp
-E:\datasets\segmentation_WBC\Dataset 1\027.bmp
-E:\datasets\segmentation_WBC\Dataset 1\028.bmp
-E:\datasets\segmentation_WBC\Dataset 1\033.bmp
-E:\datasets\segmentation_WBC\Dataset 1\034.bmp
-E:\datasets\segmentation_WBC\Dataset 1\035.bmp
-E:\datasets\segmentation_WBC\Dataset 1\037.bmp
-E:\datasets\segmentation_WBC\Dataset 1\039.bmp
-E:\datasets\segmentation_WBC\Dataset 1\040.bmp
-E:\datasets\segmentation_WBC\Dataset 1\041.bmp
-E:\datasets\segmentation_WBC\Dataset 1\042.bmp
-E:\datasets\segmentation_WBC\Dataset 1\043.bmp
-E:\datasets\segmentation_WBC\Dataset 1\044.bmp
-E:\datasets\segmentation_WBC\Dataset 1\045.bmp
-E:\datasets\segmentation_WBC\Dataset 1\046.bmp
-E:\datasets\segmentation_WBC\Dataset 1\048.bmp
-E:\datasets\segmentation_WBC\Dataset 1\049.bmp
-E:\datasets\segmentation_WBC\Dataset 1\050.bmp
-E:\datasets\segmentation_WBC\Dataset 1\052.bmp
-E:\datasets\segmentation_WBC\Dataset 1\053.bmp
-E:\datasets\segmentation_WBC\Dataset 1\055.bmp
-E:\datasets\segmentation_WBC\Dataset 1\057.bmp
-E:\datasets\segmentation_WBC\Dataset 1\058.bmp
-E:\datasets\segmentation_WBC\Dataset 1\059.bmp
-E:\datasets\segmentation_WBC\Dataset 1\060.bmp
-E:\datasets\segmentation_WBC\Dataset 1\061.bmp
-E:\datasets\segmentation_WBC\Dataset 1\063.bmp
-E:\datasets\segmentation_WBC\Dataset 1\064.bmp
-E:\datasets\segmentation_WBC\Dataset 1\065.bmp
-E:\datasets\segmentation_WBC\Dataset 1\068.bmp
-E:\datasets\segmentation_WBC\Dataset 1\135.bmp
-E:\datasets\segmentation_WBC\Dataset 1\136.bmp
-E:\datasets\segmentation_WBC\Dataset 1\137.bmp
-E:\datasets\segmentation_WBC\Dataset 1\140.bmp
-E:\datasets\segmentation_WBC\Dataset 1\141.bmp
-E:\datasets\segmentation_WBC\Dataset 1\142.bmp
-E:\datasets\segmentation_WBC\Dataset 1\144.bmp
-E:\datasets\segmentation_WBC\Dataset 1\145.bmp
-E:\datasets\segmentation_WBC\Dataset 1\146.bmp
-E:\datasets\segmentation_WBC\Dataset 1\147.bmp
-E:\datasets\segmentation_WBC\Dataset 1\148.bmp
-E:\datasets\segmentation_WBC\Dataset 1\150.bmp
-E:\datasets\segmentation_WBC\Dataset 1\151.bmp
-E:\datasets\segmentation_WBC\Dataset 1\152.bmp
-E:\datasets\segmentation_WBC\Dataset 1\153.bmp
-E:\datasets\segmentation_WBC\Dataset 1\154.bmp
-E:\datasets\segmentation_WBC\Dataset 1\155.bmp
-E:\datasets\segmentation_WBC\Dataset 1\156.bmp
-E:\datasets\segmentation_WBC\Dataset 1\157.bmp
-E:\datasets\segmentation_WBC\Dataset 1\158.bmp
-E:\datasets\segmentation_WBC\Dataset 1\159.bmp
-E:\datasets\segmentation_WBC\Dataset 1\160.bmp
-E:\datasets\segmentation_WBC\Dataset 1\161.bmp
-E:\datasets\segmentation_WBC\Dataset 1\162.bmp
-E:\datasets\segmentation_WBC\Dataset 1\163.bmp
-E:\datasets\segmentation_WBC\Dataset 1\164.bmp
-E:\datasets\segmentation_WBC\Dataset 1\165.bmp
-E:\datasets\segmentation_WBC\Dataset 1\166.bmp
-E:\datasets\segmentation_WBC\Dataset 1\167.bmp
-E:\datasets\segmentation_WBC\Dataset 1\168.bmp
-E:\datasets\segmentation_WBC\Dataset 1\169.bmp
-E:\datasets\segmentation_WBC\Dataset 1\170.bmp
-E:\datasets\segmentation_WBC\Dataset 1\171.bmp
-E:\datasets\segmentation_WBC\Dataset 1\172.bmp
-E:\datasets\segmentation_WBC\Dataset 1\173.bmp
-E:\datasets\segmentation_WBC\Dataset 1\174.bmp
-E:\datasets\segmentation_WBC\Dataset 1\175.bmp
-E:\datasets\segmentation_WBC\Dataset 1\176.bmp
-E:\datasets\segmentation_WBC\Dataset 1\177.bmp
-E:\datasets\segmentation_WBC\Dataset 1\178.bmp
-E:\datasets\segmentation_WBC\Dataset 1\179.bmp
-E:\datasets\segmentation_WBC\Dataset 1\180.bmp
-E:\datasets\segmentation_WBC\Dataset 1\181.bmp
-E:\datasets\segmentation_WBC\Dataset 1\182.bmp
-E:\datasets\segmentation_WBC\Dataset 1\183.bmp
-E:\datasets\segmentation_WBC\Dataset 1\184.bmp
-E:\datasets\segmentation_WBC\Dataset 1\185.bmp
-E:\datasets\segmentation_WBC\Dataset 1\186.bmp
-E:\datasets\segmentation_WBC\Dataset 1\187.bmp
-E:\datasets\segmentation_WBC\Dataset 1\188.bmp
-E:\datasets\segmentation_WBC\Dataset 1\189.bmp
-E:\datasets\segmentation_WBC\Dataset 1\190.bmp
-E:\datasets\segmentation_WBC\Dataset 1\191.bmp
-E:\datasets\segmentation_WBC\Dataset 1\192.bmp
-E:\datasets\segmentation_WBC\Dataset 1\193.bmp
-E:\datasets\segmentation_WBC\Dataset 1\194.bmp
-E:\datasets\segmentation_WBC\Dataset 1\201.bmp
-E:\datasets\segmentation_WBC\Dataset 1\203.bmp
-E:\datasets\segmentation_WBC\Dataset 1\204.bmp
-E:\datasets\segmentation_WBC\Dataset 1\205.bmp
-E:\datasets\segmentation_WBC\Dataset 1\206.bmp
-E:\datasets\segmentation_WBC\Dataset 1\207.bmp
-E:\datasets\segmentation_WBC\Dataset 1\208.bmp
-E:\datasets\segmentation_WBC\Dataset 1\209.bmp
-E:\datasets\segmentation_WBC\Dataset 1\210.bmp
-E:\datasets\segmentation_WBC\Dataset 1\211.bmp
-E:\datasets\segmentation_WBC\Dataset 1\212.bmp
-E:\datasets\segmentation_WBC\Dataset 1\213.bmp
-E:\datasets\segmentation_WBC\Dataset 1\214.bmp
-E:\datasets\segmentation_WBC\Dataset 1\215.bmp
-E:\datasets\segmentation_WBC\Dataset 1\216.bmp
-E:\datasets\segmentation_WBC\Dataset 1\218.bmp
-E:\datasets\segmentation_WBC\Dataset 1\219.bmp
-E:\datasets\segmentation_WBC\Dataset 1\220.bmp
-E:\datasets\segmentation_WBC\Dataset 1\223.bmp
-E:\datasets\segmentation_WBC\Dataset 1\225.bmp
-E:\datasets\segmentation_WBC\Dataset 1\226.bmp
-E:\datasets\segmentation_WBC\Dataset 1\227.bmp
-E:\datasets\segmentation_WBC\Dataset 1\229.bmp
-E:\datasets\segmentation_WBC\Dataset 1\230.bmp
-E:\datasets\segmentation_WBC\Dataset 1\231.bmp
-E:\datasets\segmentation_WBC\Dataset 1\232.bmp
-E:\datasets\segmentation_WBC\Dataset 1\233.bmp
-E:\datasets\segmentation_WBC\Dataset 1\235.bmp
-E:\datasets\segmentation_WBC\Dataset 1\236.bmp
-E:\datasets\segmentation_WBC\Dataset 1\238.bmp
-E:\datasets\segmentation_WBC\Dataset 1\239.bmp
-E:\datasets\segmentation_WBC\Dataset 1\241.bmp
-E:\datasets\segmentation_WBC\Dataset 1\242.bmp
-E:\datasets\segmentation_WBC\Dataset 1\243.bmp
-E:\datasets\segmentation_WBC\Dataset 1\244.bmp
-E:\datasets\segmentation_WBC\Dataset 1\245.bmp
-E:\datasets\segmentation_WBC\Dataset 1\246.bmp
-E:\datasets\segmentation_WBC\Dataset 1\247.bmp
-E:\datasets\segmentation_WBC\Dataset 1\248.bmp
-E:\datasets\segmentation_WBC\Dataset 1\249.bmp
-E:\datasets\segmentation_WBC\Dataset 1\250.bmp
-E:\datasets\segmentation_WBC\Dataset 1\251.bmp
-E:\datasets\segmentation_WBC\Dataset 1\252.bmp
-E:\datasets\segmentation_WBC\Dataset 1\253.bmp
-E:\datasets\segmentation_WBC\Dataset 1\254.bmp
-E:\datasets\segmentation_WBC\Dataset 1\255.bmp
-E:\datasets\segmentation_WBC\Dataset 1\256.bmp
-E:\datasets\segmentation_WBC\Dataset 1\257.bmp
-E:\datasets\segmentation_WBC\Dataset 1\258.bmp
-E:\datasets\segmentation_WBC\Dataset 1\259.bmp
-E:\datasets\segmentation_WBC\Dataset 1\261.bmp
-E:\datasets\segmentation_WBC\Dataset 1\262.bmp
-E:\datasets\segmentation_WBC\Dataset 1\264.bmp
-E:\datasets\segmentation_WBC\Dataset 1\265.bmp
-E:\datasets\segmentation_WBC\Dataset 1\266.bmp
-E:\datasets\segmentation_WBC\Dataset 1\267.bmp
-E:\datasets\segmentation_WBC\Dataset 1\269.bmp
-E:\datasets\segmentation_WBC\Dataset 1\270.bmp
-E:\datasets\segmentation_WBC\Dataset 1\271.bmp
-E:\datasets\segmentation_WBC\Dataset 1\272.bmp
-E:\datasets\segmentation_WBC\Dataset 1\273.bmp
-E:\datasets\segmentation_WBC\Dataset 1\274.bmp
-E:\datasets\segmentation_WBC\Dataset 1\276.bmp
-E:\datasets\segmentation_WBC\Dataset 1\277.bmp
-E:\datasets\segmentation_WBC\Dataset 1\278.bmp
-E:\datasets\segmentation_WBC\Dataset 1\279.bmp
-E:\datasets\segmentation_WBC\Dataset 1\280.bmp
-E:\datasets\segmentation_WBC\Dataset 1\281.bmp
-E:\datasets\segmentation_WBC\Dataset 1\282.bmp
-E:\datasets\segmentation_WBC\Dataset 1\283.bmp
-E:\datasets\segmentation_WBC\Dataset 1\284.bmp
-E:\datasets\segmentation_WBC\Dataset 1\299.bmp
-E:\datasets\segmentation_WBC\Dataset 1\300.bmp
+../source/cell\Detection\002.bmp
+../source/cell\Detection\003.bmp
+../source/cell\Detection\004.bmp
+../source/cell\Detection\005.bmp
+../source/cell\Detection\006.bmp
+../source/cell\Detection\008.bmp
+../source/cell\Detection\009.bmp
+../source/cell\Detection\010.bmp
+../source/cell\Detection\011.bmp
+../source/cell\Detection\012.bmp
+../source/cell\Detection\014.bmp
+../source/cell\Detection\015.bmp
+../source/cell\Detection\017.bmp
+../source/cell\Detection\018.bmp
+../source/cell\Detection\020.bmp
+../source/cell\Detection\022.bmp
+../source/cell\Detection\023.bmp
+../source/cell\Detection\024.bmp
+../source/cell\Detection\027.bmp
+../source/cell\Detection\028.bmp
+../source/cell\Detection\033.bmp
+../source/cell\Detection\034.bmp
+../source/cell\Detection\035.bmp
+../source/cell\Detection\037.bmp
+../source/cell\Detection\039.bmp
+../source/cell\Detection\040.bmp
+../source/cell\Detection\041.bmp
+../source/cell\Detection\042.bmp
+../source/cell\Detection\043.bmp
+../source/cell\Detection\044.bmp
+../source/cell\Detection\045.bmp
+../source/cell\Detection\046.bmp
+../source/cell\Detection\048.bmp
+../source/cell\Detection\049.bmp
+../source/cell\Detection\050.bmp
+../source/cell\Detection\052.bmp
+../source/cell\Detection\053.bmp
+../source/cell\Detection\055.bmp
+../source/cell\Detection\057.bmp
+../source/cell\Detection\058.bmp
+../source/cell\Detection\059.bmp
+../source/cell\Detection\060.bmp
+../source/cell\Detection\061.bmp
+../source/cell\Detection\063.bmp
+../source/cell\Detection\064.bmp
+../source/cell\Detection\065.bmp
+../source/cell\Detection\068.bmp
+../source/cell\Detection\135.bmp
+../source/cell\Detection\136.bmp
+../source/cell\Detection\137.bmp
+../source/cell\Detection\140.bmp
+../source/cell\Detection\141.bmp
+../source/cell\Detection\142.bmp
+../source/cell\Detection\144.bmp
+../source/cell\Detection\145.bmp
+../source/cell\Detection\146.bmp
+../source/cell\Detection\147.bmp
+../source/cell\Detection\148.bmp
+../source/cell\Detection\150.bmp
+../source/cell\Detection\151.bmp
+../source/cell\Detection\152.bmp
+../source/cell\Detection\153.bmp
+../source/cell\Detection\154.bmp
+../source/cell\Detection\155.bmp
+../source/cell\Detection\156.bmp
+../source/cell\Detection\157.bmp
+../source/cell\Detection\158.bmp
+../source/cell\Detection\159.bmp
+../source/cell\Detection\160.bmp
+../source/cell\Detection\161.bmp
+../source/cell\Detection\162.bmp
+../source/cell\Detection\163.bmp
+../source/cell\Detection\164.bmp
+../source/cell\Detection\165.bmp
+../source/cell\Detection\166.bmp
+../source/cell\Detection\167.bmp
+../source/cell\Detection\168.bmp
+../source/cell\Detection\169.bmp
+../source/cell\Detection\170.bmp
+../source/cell\Detection\171.bmp
+../source/cell\Detection\172.bmp
+../source/cell\Detection\173.bmp
+../source/cell\Detection\174.bmp
+../source/cell\Detection\175.bmp
+../source/cell\Detection\176.bmp
+../source/cell\Detection\177.bmp
+../source/cell\Detection\178.bmp
+../source/cell\Detection\179.bmp
+../source/cell\Detection\180.bmp
+../source/cell\Detection\181.bmp
+../source/cell\Detection\182.bmp
+../source/cell\Detection\183.bmp
+../source/cell\Detection\184.bmp
+../source/cell\Detection\185.bmp
+../source/cell\Detection\186.bmp
+../source/cell\Detection\187.bmp
+../source/cell\Detection\188.bmp
+../source/cell\Detection\189.bmp
+../source/cell\Detection\190.bmp
+../source/cell\Detection\191.bmp
+../source/cell\Detection\192.bmp
+../source/cell\Detection\193.bmp
+../source/cell\Detection\194.bmp
+../source/cell\Detection\201.bmp
+../source/cell\Detection\203.bmp
+../source/cell\Detection\204.bmp
+../source/cell\Detection\205.bmp
+../source/cell\Detection\206.bmp
+../source/cell\Detection\207.bmp
+../source/cell\Detection\208.bmp
+../source/cell\Detection\209.bmp
+../source/cell\Detection\210.bmp
+../source/cell\Detection\211.bmp
+../source/cell\Detection\212.bmp
+../source/cell\Detection\213.bmp
+../source/cell\Detection\214.bmp
+../source/cell\Detection\215.bmp
+../source/cell\Detection\216.bmp
+../source/cell\Detection\218.bmp
+../source/cell\Detection\219.bmp
+../source/cell\Detection\220.bmp
+../source/cell\Detection\223.bmp
+../source/cell\Detection\225.bmp
+../source/cell\Detection\226.bmp
+../source/cell\Detection\227.bmp
+../source/cell\Detection\229.bmp
+../source/cell\Detection\230.bmp
+../source/cell\Detection\231.bmp
+../source/cell\Detection\232.bmp
+../source/cell\Detection\233.bmp
+../source/cell\Detection\235.bmp
+../source/cell\Detection\236.bmp
+../source/cell\Detection\238.bmp
+../source/cell\Detection\239.bmp
+../source/cell\Detection\241.bmp
+../source/cell\Detection\242.bmp
+../source/cell\Detection\243.bmp
+../source/cell\Detection\244.bmp
+../source/cell\Detection\245.bmp
+../source/cell\Detection\246.bmp
+../source/cell\Detection\247.bmp
+../source/cell\Detection\248.bmp
+../source/cell\Detection\249.bmp
+../source/cell\Detection\250.bmp
+../source/cell\Detection\251.bmp
+../source/cell\Detection\252.bmp
+../source/cell\Detection\253.bmp
+../source/cell\Detection\254.bmp
+../source/cell\Detection\255.bmp
+../source/cell\Detection\256.bmp
+../source/cell\Detection\257.bmp
+../source/cell\Detection\258.bmp
+../source/cell\Detection\259.bmp
+../source/cell\Detection\261.bmp
+../source/cell\Detection\262.bmp
+../source/cell\Detection\264.bmp
+../source/cell\Detection\265.bmp
+../source/cell\Detection\266.bmp
+../source/cell\Detection\267.bmp
+../source/cell\Detection\269.bmp
+../source/cell\Detection\270.bmp
+../source/cell\Detection\271.bmp
+../source/cell\Detection\272.bmp
+../source/cell\Detection\273.bmp
+../source/cell\Detection\274.bmp
+../source/cell\Detection\276.bmp
+../source/cell\Detection\277.bmp
+../source/cell\Detection\278.bmp
+../source/cell\Detection\279.bmp
+../source/cell\Detection\280.bmp
+../source/cell\Detection\281.bmp
+../source/cell\Detection\282.bmp
+../source/cell\Detection\283.bmp
+../source/cell\Detection\284.bmp
+../source/cell\Detection\299.bmp
+../source/cell\Detection\300.bmp

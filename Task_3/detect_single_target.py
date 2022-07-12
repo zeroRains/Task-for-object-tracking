@@ -1,7 +1,7 @@
 from Task_2.utils import pre_process, normalization
 import cv2
 import numpy as np
-from tqdm import tqdm
+
 
 
 def pre_process_n(img):
@@ -31,7 +31,7 @@ class Detector:
     相关滤波检测器类
     """
 
-    def __init__(self, pretrain_num=128, h=100, w=100, show_in_window=False):
+    def __init__(self, pretrain_num=0, h=100, w=100, show_in_window=False):
         """
         构造函数
         :param pretrain_num:预训练轮数
@@ -64,6 +64,7 @@ class Detector:
                 # 读取ground-truth，应该是浮点数的响应值，但是在保存的时候只能保存uin8，所以乘了个255
                 # 在这里使用的时候要除以255
                 gt = cv2.imread(now.replace('.bmp', '_gauss.png'), -1)
+                gt = cv2.resize(gt, (self.cell_w, self.cell_h))
                 gt = gt.astype(np.float32)
                 gt /= 255.0
                 # 数据增强
@@ -127,7 +128,7 @@ class Detector:
             cv2.waitKey(0)
             cv2.destroyAllWindows()
         # 保存检测结果
-        cv2.imwrite("../images/fig6.jpg", img)
+        cv2.imwrite("../images/result_cell.jpg", img)
         print("get the result!")
 
     def load(self, path):
@@ -150,6 +151,6 @@ class Detector:
 if __name__ == '__main__':
     detector = Detector(show_in_window=True)  # 实例化图像
     detector.train('data_path.txt')  # 训练相关滤波器
-    # detector.save('./model_single_target.npy')  # 保存滤波器成文件
-    # detector.load('./model_single_target.npy')  # 加载滤波器文件
+    detector.save('./model_single_target.npy')  # 保存滤波器成文件
+    detector.load('./model_single_target.npy')  # 加载滤波器文件
     detector.run('../source/078.bmp')  # 检测相似物体

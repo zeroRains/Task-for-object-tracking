@@ -2,10 +2,12 @@ import numpy as np
 import cv2
 
 
+# 归一化
 def normalization(data):
     return (data - data.min()) / (data.max() - data.min())
 
 
+# 生成高斯峰
 def generate_gauss_map(img, gt, sigma):
     h, w = img.shape
     xx, yy = np.meshgrid(np.arange(w), np.arange(h))
@@ -20,6 +22,7 @@ def generate_gauss_map(img, gt, sigma):
     return normalization(response)
 
 
+# 预处理，解决边界效应
 def pre_process(img):
     # 这个操作对应论文Preprossing部分
     h, w = img.shape
@@ -36,6 +39,7 @@ def pre_process(img):
     return img * window
 
 
+# 仿射变换，随机翻转（参考代码提供的函数，因为存在一点问题，所以没有使用）
 def random_warp(img):
     a = -180 / 16
     b = 180 / 16
@@ -50,6 +54,7 @@ def random_warp(img):
     return img_rot
 
 
+# 预训练生成滤波器
 def pretrain(img, G, pretrain_num, lr=0.125):
     h, w = G.shape
     # 预处理(用来解决目标的不连续问题)
@@ -63,7 +68,7 @@ def pretrain(img, G, pretrain_num, lr=0.125):
         Bi = (1 - lr) * Bi + lr * np.fft.fft2(fi) * np.conjugate(np.fft.fft2(fi))
     return Ai, Bi
 
-
+# 就算PSR
 def cal_psr(g):
     """
     论文中的Peak to Sidelobe Ratio

@@ -6,8 +6,6 @@ from Task_2.utils import normalization
 from tqdm import tqdm
 
 
-
-
 def get_file_txt(path, path_file):
     """
 
@@ -16,20 +14,22 @@ def get_file_txt(path, path_file):
     :return:
     """
     data1 = pd.read_csv(os.path.join(path, r'Class Labels of Dataset 1.csv'))
-    data2 = pd.read_csv(os.path.join(path, r'Class Labels of Dataset 2.csv'))
     images_id = np.array(data1[data1[r'class label'] == 1][r'image ID'])
-    use_data = r'Dataset 1'
+    use_data = r'Detection'
 
     with open(path_file, 'w+') as f:
         for i in images_id:
             path_img = os.path.join(path, use_data, f"{str(i).zfill(3)}.bmp")
             f.write(f'{path_img}\n')
+    print("finished")
 
 
 def generate_file_txt(path, path_file):
     files = os.listdir(path)
     with open(path_file, 'w+') as f:
         for i in files:
+            if 'gauss' in i:
+                continue
             path_img = os.path.join(path, i)
             f.write(f'{path_img}\n')
 
@@ -91,7 +91,7 @@ def generate_multi_gauss_label(path_file, sigma=2):
 
 
 if __name__ == '__main__':
-    # get_file_txt(r'E:\datasets\segmentation_WBC','data_path.txt') # 生成图像文件(细胞,data_path.txt)
+    get_file_txt(r'../source/cell', 'data_path.txt')  # 生成图像文件(细胞,data_path.txt)
     # generate_gauss_label('data_path.txt')  # 标记目标中心点并生成高斯图(细胞,单一目标)
-    # generate_file_txt("../source/car", "car_path.txt")  # 生成图像文件（车辆，car_path.txt）
-    generate_multi_gauss_label("car_path.txt")  # 标记目标中心并生成高斯图(车辆,多个目标)
+    generate_file_txt("../source/car", "car_path.txt")  # 生成图像文件（车辆，car_path.txt）
+    # generate_multi_gauss_label("car_path.txt")  # 标记目标中心并生成高斯图(车辆,多个目标)

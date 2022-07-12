@@ -5,6 +5,10 @@ import os
 from Task_2.utils import normalization
 from tqdm import tqdm
 
+path = r"E:\datasets\CRCHistoPhenotypes_2016_04_28\Detection"
+save_path = 'cell_path.txt'
+dir_path = os.listdir(path)
+
 
 def generate_gauss_map(img, gt, sigma):
     h, w = img.shape
@@ -19,10 +23,6 @@ def generate_gauss_map(img, gt, sigma):
     # 归一化
     return normalization(response)
 
-
-path = r"E:\datasets\CRCHistoPhenotypes_2016_04_28\Detection"
-save_path = 'cell_path.txt'
-dir_path = os.listdir(path)
 
 with open(save_path, 'w+') as f:
     for dir_i in tqdm(dir_path):

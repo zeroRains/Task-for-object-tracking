@@ -1,9 +1,8 @@
-from Task_2.utils import pre_process, normalization
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 from skimage.io import imshow, imread, imsave
-from tqdm import tqdm
+
 
 
 def tukeywindow(size, alpha=0.5):

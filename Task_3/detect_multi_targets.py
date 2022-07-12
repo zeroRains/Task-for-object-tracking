@@ -1,7 +1,6 @@
 from Task_2.utils import pre_process, normalization
 import cv2
 import numpy as np
-from tqdm import tqdm
 from skimage.io import imsave
 
 
@@ -153,7 +152,7 @@ class Detector:
 
 if __name__ == '__main__':
     detector = Detector(show_in_window=True)  # 实例化图像
-    # detector.train('car_path.txt')  # 训练相关滤波器
-    # detector.save('./model_multi_targets.npy')  # 保存滤波器成文件
+    detector.train('car_path.txt')  # 训练相关滤波器
+    detector.save('./model_multi_targets.npy')  # 保存滤波器成文件
     detector.load('./model_multi_targets.npy')  # 加载滤波器文件
     detector.run('../source/car/0008.png')  # 检测相似物体
