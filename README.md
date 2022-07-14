@@ -63,7 +63,13 @@
 
 实现代码：[mosse](https://github.com/zeroRains/Task-for-object-tracking/blob/master/Task_2/mosse.py#L1)
 
-实现效果：[result.avi](https://github.com/zeroRains/Task-for-object-tracking/raw/master/Task_2/result.avi)
+实现效果：
+
+1. [result1.avi](https://github.com/zeroRains/Task-for-object-tracking/raw/master/Task_2/result1.avi)
+
+2. [result2.avi](https://github.com/zeroRains/Task-for-object-tracking/raw/master/Task_2/result2.avi)
+
+3. [result3.avi](https://github.com/zeroRains/Task-for-object-tracking/raw/master/Task_2/result3.avi)
 
 复现细节：
 
