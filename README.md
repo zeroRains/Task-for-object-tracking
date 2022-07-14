@@ -1,5 +1,9 @@
 # 夏令营考核——基于相关滤波的物体追踪
 
+>实现人：卢林军
+>
+>如有借鉴与使用，请务必标明出处。
+
 ## Task 1：
 
 - [x] 实现最简单的帧差法运动物体追踪
@@ -211,6 +215,12 @@ matlab上的源码（dijkstra的那个论文）只有跟踪的，我按着第2�
 第一张明显的细胞图像是原图，第二张灰度的结果是相关图可视化后的结果（即使用相关滤波器处理的结果），第三张二值图像就是Ground Truth。从结果上看，相关图中的极大值点大部分对应了GT中的细胞核位置，说明预测是有一定效果的，但是现在面临一个问题，虽然他们都是极值点，但是他们的实际的数值不是全都一样的，这就导致的了即使检测出了细胞核仍然难以通过相关图获取到对应细胞的坐标（因为我现在还没有查到获取图像中这些突出的极值点坐标的方法）。所以，对方提供的代码仍然是有一些不足的。
 
 实现代码：[detect_multi_targets_cell.py](https://github.com/zeroRains/Task-for-object-tracking/blob/master/Task_3/detect_multi_targets_cell.py)
+
+**2022.7.14**
+
+继续学习相关滤波的相关知识，学习下一篇文章
+
+[High-Speed Tracking with Kernelized Correlation Filters](https://ieeexplore.ieee.org/abstract/document/6870486)
 
 参考资料：
 
