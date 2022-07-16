@@ -225,6 +225,7 @@ matlab上的源码（dijkstra的那个论文）只有跟踪的，我按着第2�
 **2022.7.14**
 
 继续学习相关滤波的相关知识，学习下一篇文章
+(准备答辩了，得搁置这个任务了)
 
 [High-Speed Tracking with Kernelized Correlation Filters](https://ieeexplore.ieee.org/abstract/document/6870486)
 
